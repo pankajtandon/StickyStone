@@ -25,33 +25,52 @@ public class User implements Identifiable<Long>, Serializable{
 
 	private static final long serialVersionUID = 1364326568830699067L;
 	
-	private final Long id;
-    private final String name;
+	private Long id;
+	private String userId;
+    private String name;
     private String password;
     private String title;
 	private Date startDate;
+
+    
+	protected User() {
+		//for JPA
+	}
+    public User (String userId, String name){
+    	this.userId = userId;
+    	this.name = name;
+    }
+    
+    public User (Long id, String userId, String name){
+    	this.id = id;
+    	this.userId = userId;
+    	this.name = name;
+    }
 	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (nullable = true, name = "account_id_fkey") 
 	private Account account;
-    
-    public User (Long id, String name){
-    	this.id = id;
-    	this.name = name;
-    }
-
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE)
 	@Column (name = "id", unique = true, nullable = false)    
 	public Long getId() {
 		return id;
 	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -75,14 +94,21 @@ public class User implements Identifiable<Long>, Serializable{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-    
+	
+	public String getUserId() {
+		return userId;
+	}    
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(5, 101)
 			.append(this.id)
+			.append(this.userId)
 			.append(this.name)
-			.append(this.title)
 			.toHashCode();
 	}
 
@@ -92,11 +118,12 @@ public class User implements Identifiable<Long>, Serializable{
 		if (other instanceof User){
 			User o = (User)other;
 		    boo =  new EqualsBuilder()
-		    .append(o.name, this.name)
-		    .append(o.id, this.id)
+		    .append(o.userId, this.userId)
 		    .isEquals();
 		}
 		return boo;
 	}
+
+
     
 }
