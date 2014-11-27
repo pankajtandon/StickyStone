@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.nayidisha.sticky.domain.entity.User;
 
-
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
 	User findByUserId(@Param("userId") String userId);

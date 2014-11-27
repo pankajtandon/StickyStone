@@ -167,29 +167,32 @@
 		
 			
 		<profile>
-			<id>dev</id>
+			<id>loc</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<env>dev</env>
-				<logfile.location>sticky-web-dev.log</logfile.location>
+				<logfile.location>sticky-loc.log</logfile.location>
 			</properties>
 		</profile>
 		<profile>
+			<id>dev</id>
+			<properties>
+				<logfile.location>sticky-dev.log</logfile.location>
+			</properties>
+		</profile>		
+		<profile>
 			<id>qa</id>
 			<properties>
-				<env>qa</env>
-				<logfile.location>sticky-web-qa.log</logfile.location>
+				<logfile.location>/tmp/logs/sticky-qa.log</logfile.location>
 			</properties>
 		</profile>		
 		<profile>
 			<id>prod</id>
 			<properties>
-				<env>prod</env>
-				<logfile.location>/tmp/logs/sticky-web-prod.log</logfile.location>
+				<logfile.location>/tmp/logs/sticky-prod.log</logfile.location>
 			</properties>
-		</profile>		
+		</profile>
 		<profile>
 			<id>alltests</id>
 			<properties>

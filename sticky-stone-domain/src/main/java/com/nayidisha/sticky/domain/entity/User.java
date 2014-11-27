@@ -54,7 +54,7 @@ public class User implements Identifiable<Long>, Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE)
-	@Column (name = "id", unique = true, nullable = false)    
+	@Column (name = "id")    
 	public Long getId() {
 		return id;
 	}

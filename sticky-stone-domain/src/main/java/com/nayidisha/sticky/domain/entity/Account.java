@@ -36,7 +36,7 @@ public class Account implements Identifiable<Long>, Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE)
-	@Column (name = "id", unique = true, nullable = false) 
+	@Column (name = "id")
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
