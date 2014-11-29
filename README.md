@@ -46,4 +46,13 @@ Use Cases
 Demo
 ---
 
+To Run
+---
+
+mvn clean install -Dspring.profiles.active=loc | dev
+
+loc -> H2
+dev -> MySQL
+
+
 
