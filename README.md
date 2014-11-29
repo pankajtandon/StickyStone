@@ -3,12 +3,14 @@ Sticky Stone
 
 A reference implementation for how to build an application that uses the best-practices that are encouraged by the use of Sping-boot
 
+  - This is still WIP... 
+
 Features
 ---
 
-All interactions require a REST client. There is no UI with this distribution. For a good UI that consumes Restful API, see PointyPatient.
+All interactions require a REST client. There is no UI with this distribution. For a good UI that consumes Restful API, see [PointyPatient](https://github.com/pankajtandon/PointyPatient).
 
-This app showcases the following features ([related blog post](Sticky Stone "Sticky Stone")):
+This app showcases the following features [related blog post](http://www.technochord.com): (Remember... still WIP)
 
 - Showcases use of Spring-Boot
 - Self-registration
