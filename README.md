@@ -10,6 +10,20 @@ All interactions require a REST client. There is no UI with this distribution. F
 
 This app showcases the following features ([related blog post](Sticky Stone "Sticky Stone")):
 
+- Showcases use of Spring-Boot
+- Self-registration
+- Login Using Facebook
+- The use of Spring Security to secure Restful API
+- Spring HATEOAS
+- Rich Domain Design
+- modular design at maven module level
+- Spring MVC tests
+- Spring JPA and Spring Data
+- The use of Spring profiles and the Environment abstraction
+- The use of Logback
+- Externalizing properties
+
+
 Setup
 ---
 
@@ -31,43 +45,30 @@ Use Cases
 - The android app will only allow the users who have registered on website to browse but not shop.
 - When the user is bumped up to SHOPPER by an ADMIN user, that user should be able to shop on the phone.
 
-- Showcases use of Spring-Boot
-- Self-registration
-- Login Using Facebook
-- Showcases the use of Spring Security to secure Restful API
-- Showcases Spring HATEOAS
-- Showcases Rich Domain Design
-- Showcases modular design at maven module level
-- Showcases Spring MVC tests
-- Showcases Spring JPA and Spring Data
-- Showcases externalizing properties using YAML
-- Showcases the use of Spring profiles and the Environment abstraction
+
+
 
 Demo
 ---
 
+Coming soon on an openshift site near you!
+
+
 To Run
 ---
 
+<code>
 mvn clean install -Dspring.profiles.active=loc | dev
+</code>
 
-loc -> H2
-dev -> MySQL
+Currently loc uses an H2 db and dev uses a local MySQL db
 
 
 Using jar file:
 
+<code>
 java -jar target/sticky-stone-domain-0.1.0.jar --spring.profiles.active=loc | dev
-
-
-Features
----
-
-- Use of Logback
-- Use of Spring Boot
-- Use of JavaConfig
-- Use of Profiles
-- Tests that rollback db transactions
+</code>
 
 
 
