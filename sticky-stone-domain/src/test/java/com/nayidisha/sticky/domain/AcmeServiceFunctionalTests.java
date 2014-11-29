@@ -20,7 +20,7 @@ import com.nayidisha.sticky.domain.service.AcmeService;
 @ContextConfiguration(classes = Application.class) 
 @Transactional
 @TransactionConfiguration
-@ActiveProfiles(profiles="loc")
+@ActiveProfiles(profiles="dev")
 
 public class AcmeServiceFunctionalTests {
 
