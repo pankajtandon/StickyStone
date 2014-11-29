@@ -38,13 +38,14 @@ public class DomainConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(Properties jpaProperties) throws Exception {
 	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    vendorAdapter.setGenerateDdl(Boolean.TRUE);
-	    vendorAdapter.setShowSql(Boolean.TRUE);     
+	    vendorAdapter.setShowSql(Boolean.TRUE);   
+	    vendorAdapter.setDatabasePlatform(persistableConfiguration.getDialect());
 
 	    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 	    factory.setPersistenceUnitName("sticky");
 	    factory.setJpaVendorAdapter(vendorAdapter);
 	    factory.setPackagesToScan("com.nayidisha.sticky.domain");
-	    factory.setDataSource(persistableConfiguration.getDataSource());     
+	    factory.setDataSource(persistableConfiguration.getDataSource());
 
 	    factory.setJpaProperties(jpaProperties);
 	    factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());

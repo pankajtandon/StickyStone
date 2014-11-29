@@ -53,7 +53,7 @@ public class User implements Identifiable<Long>, Serializable{
 	private Account account;
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.SEQUENCE)
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column (name = "id")    
 	public Long getId() {
 		return id;

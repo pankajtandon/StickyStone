@@ -30,5 +30,10 @@ public class MySQLDataSourceConfiguration implements PersistableConfiguration {
 
 	    return ds;
 	}
+	
+	@Override
+	public String getDialect() {
+		return env.getRequiredProperty("db.dialect");
+	}
 
 }

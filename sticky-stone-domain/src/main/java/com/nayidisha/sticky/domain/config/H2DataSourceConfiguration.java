@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class H2DataSourceConfiguration implements PersistableConfiguration {
 
 	@Inject
-	private Environment env;
+	private Environment env; 
 	
 	@Bean
 	@Override
@@ -28,6 +28,12 @@ public class H2DataSourceConfiguration implements PersistableConfiguration {
 	    ds.setPassword(env.getRequiredProperty("db.password"));
 
 	    return ds;
+	}
+
+	@Override
+	public String getDialect() {
+		return env.getRequiredProperty("db.dialect");
 	}	
+	
 
 }
