@@ -4,61 +4,29 @@ import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
-
-
 @Configuration
 @ComponentScan (basePackages="com.nayidisha.sticky.domain")
+@Import({H2DataSourceConfiguration.class, MySQLDataSourceConfiguration.class})
 @EnableJpaRepositories
-//@PropertySource({"classpath:application-${profile}.properties", "classpath:application.properties"})
-@PropertySource({"classpath:application.properties"})
+public class DomainConfiguration { 	
 
-public class DomainConfiguration {
-	
-	//private static final String H2_JDBC_URL_TEMPLATE = "jdbc:h2:%s/target/db/sticky;AUTO_SERVER=TRUE";
 	
 	@Inject
-	private Environment env;
+	private PersistableConfiguration persistableConfiguration;
+		
 
-	@Profile("loc")	
-	@Bean
-	public DataSource dataSourceH2() throws Exception {
-		DriverManagerDataSource ds = new DriverManagerDataSource(); 
-		ds.setDriverClassName(env.getRequiredProperty("db.driver"));
-	    ds.setUrl(env.getRequiredProperty("db.url"));
-	    ds.setUsername(env.getRequiredProperty("db.username"));
-	    ds.setPassword(env.getRequiredProperty("db.password"));
-
-	    return ds;
-	}
-	
-	@Profile("dev")	
-	@Bean
-	public DataSource dataSourceMySQl() throws Exception {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        
-        dataSource.setDriverClassName(env.getRequiredProperty("db.driver"));
-        dataSource.setUrl(env.getRequiredProperty("db.url"));
-        dataSource.setUsername(env.getRequiredProperty("db.username"));
-        dataSource.setPassword(env.getRequiredProperty("db.password"));
-         
-        return dataSource;
-	}
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 	    JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -67,7 +35,7 @@ public class DomainConfiguration {
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) throws Exception {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(Properties jpaProperties) throws Exception {
 	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    vendorAdapter.setGenerateDdl(Boolean.TRUE);
 	    vendorAdapter.setShowSql(Boolean.TRUE);     
@@ -76,7 +44,7 @@ public class DomainConfiguration {
 	    factory.setPersistenceUnitName("sticky");
 	    factory.setJpaVendorAdapter(vendorAdapter);
 	    factory.setPackagesToScan("com.nayidisha.sticky.domain");
-	    factory.setDataSource(dataSource);     
+	    factory.setDataSource(persistableConfiguration.getDataSource());     
 
 	    factory.setJpaProperties(jpaProperties);
 	    factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
@@ -92,5 +60,7 @@ public class DomainConfiguration {
 	    props.put("hibernate.format_sql", "true");
 
 	    return props;
-	}	
+	}
+
+
 }
