@@ -55,4 +55,8 @@ loc -> H2
 dev -> MySQL
 
 
+Using jar file:
+
+java -jar target/sticky-stone-domain-0.1.0.jar --spring.profiles.active=loc | dev
+
 
