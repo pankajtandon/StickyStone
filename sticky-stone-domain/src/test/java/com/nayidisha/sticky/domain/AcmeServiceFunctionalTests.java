@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -18,7 +17,6 @@ import com.nayidisha.sticky.domain.service.AcmeService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class) 
 @Transactional
-@TransactionConfiguration
 //@ActiveProfiles(profiles="loc")
 
 public class AcmeServiceFunctionalTests {

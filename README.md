@@ -60,3 +60,14 @@ Using jar file:
 java -jar target/sticky-stone-domain-0.1.0.jar --spring.profiles.active=loc | dev
 
 
+Features
+---
+
+- Use of Logback
+- Use of Spring Boot
+- Use of JavaConfig
+- Use of Profiles
+- Tests that rollback db transactions
+
+
+

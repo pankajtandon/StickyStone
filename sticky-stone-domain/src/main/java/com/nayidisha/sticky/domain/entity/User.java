@@ -95,6 +95,7 @@ public class User implements Identifiable<Long>, Serializable{
 		this.startDate = startDate;
 	}
 	
+	@Column(unique = true)
 	public String getUserId() {
 		return userId;
 	}    
